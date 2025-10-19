@@ -16,6 +16,16 @@ def vigenere_encrypt(plaintext, key):
         result.append(chr((p + k) % 26 + 65))  # shift it by the key, and convert from acsii value.
     return "".join(result)       # Put into the array
 
+
+def vigenere_decrypt(ciphertext, key):
+    """Decrypt ciphertext using key (both expected as uppercase A-Z only)."""
+    result = []                  # store decryption
+    for i, c in enumerate(ciphertext): #similar concept, just using the decryption of the cipher now
+        cval = ord(c) - 65       # convert ciphertext char to acsii
+        kval = ord(key[i % len(key)]) - 65  # key char modification
+        result.append(chr((cval - kval) % 26 + 65))  # reverse shift, conver to char again
+    return "".join(result)  #put into the array
+
 def main():
     passkey = None     # stores password from user when asked
     while True:
