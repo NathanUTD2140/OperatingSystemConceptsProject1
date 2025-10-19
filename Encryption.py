@@ -27,7 +27,7 @@ def vigenere_decrypt(ciphertext, key):
     return "".join(result)  #put into the array
 
 def main():
-    passkey = None     # stores password from user when asked
+    password = None     # stores password from user when asked
     while True:
         input = sys.stdin.readline() # waits for the next command from the user
         if not input: #break if nothing
@@ -39,7 +39,7 @@ def main():
 # parse the input from the user into the first half as the instruction and the other as a part
         parts = input.split(" ", 1)   # split at the first space only, could be a cipher otherwise
         instruction = parts[0].upper()          # uppercase for normalization
-        arg = parts[1].upper() if len(parts) > 1 else ""  # argument if present, uppercase
+        userString = parts[1].upper() if len(parts) > 1 else ""  # argument if present, uppercase
 
         # QUIT: terminate the process, simple and clean
         if instruction == "QUIT":
@@ -47,10 +47,10 @@ def main():
 
         # PASS: set the key (only letters)
         elif instruction == "PASS":
-            if not arg.isalpha():      # Make sure it's alphabet characters
+            if not userString.isalpha():      # Make sure it's alphabet characters
                 print("ERROR Passkey must contain only letters.") #error message for user
             else:
-                passkey = arg          # store the password
+                password = userString          # store the password
                 print("RESULT Passkey set.") #tell the user it has been set
 
         # ENCRYPT: encrypt userString using stored password
