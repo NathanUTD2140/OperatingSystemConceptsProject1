@@ -24,3 +24,6 @@ Added encryption, there were good examples online, so this part was relatively s
 
 ### 9:40pm, October 18th, 2025
 Added decryption, this was relatively simple, as it is very similar to encryption. 
+
+### 10:04pm, October 18th, 2025
+Added in use cases for whenever the user inputs a command. It was interesting splitting apart the command terminal lines, as I've only done this previously in my UNIX class. This was also interesting, as it was more simple then I thought, as most of it was making the case if the password wasn't set, and then calling the previous functions. 
