@@ -27,3 +27,7 @@ Added decryption, this was relatively simple, as it is very similar to encryptio
 
 ### 10:04pm, October 18th, 2025
 Added in use cases for whenever the user inputs a command. It was interesting splitting apart the command terminal lines, as I've only done this previously in my UNIX class. This was also interesting, as it was more simple then I thought, as most of it was making the case if the password wasn't set, and then calling the previous functions. 
+
+## 10:59pm, October 18th, 2025
+
+I didn't encounter nearly as many difficulties as I thought I would. I believed the cipher to be more difficult, but there are plenty of resources that can help with it. The log file was a bit tricky, but even that was straightforward enough. I think I fulfilled my goals for this part, and tomorrow I will work on the driver. I will take the input from the user in driver, and use it to open encryption and logger. Then driver will keep hearing things from the user and pass it to encryption. Actions that happen in encryption will then transfer to the logger file, which will record what happens and then continue nowards. 
