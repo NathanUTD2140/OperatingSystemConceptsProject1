@@ -7,6 +7,15 @@ import sys
 #   QUIT            stops the program
 # Everything is sent back using stdout
 
+def vigenere_encrypt(plaintext, key):
+    """Encrypt plaintext using key (both expected as uppercase A-Z only)."""
+    result = []                  # store the result of the encryption to display back to user
+    for i, c in enumerate(plaintext):      # iterate with index (i) of each character(c)for thing we want to encrypt (key)
+        p = ord(c) - 65          # Converstion to uppercase characters A-Z in ascii values
+        k = ord(key[i % len(key)]) - 65  # repeat key by using modulo on index
+        result.append(chr((p + k) % 26 + 65))  # shift it by the key, and convert from acsii value.
+    return "".join(result)       # Put into the array
+
 def main():
     passkey = None     # stores password from user when asked
     while True:
