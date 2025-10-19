@@ -21,3 +21,6 @@ Today, I will try and finish off the files of encryption and logger. The encrypt
 ### Updates for this session
 ### 9:28pm, October 18th, 2025
 Added encryption, there were good examples online, so this part was relatively straightforward. I find it interesting to use ascii math. 
+
+### 9:40pm, October 18th, 2025
+Added decryption, this was relatively simple, as it is very similar to encryption. 
