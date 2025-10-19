@@ -24,3 +24,30 @@ def main():
         sys.exit(1) #it failed, back out
 
     log_file = sys.argv[1] #set the log file name as the second argument
+
+    # Open the new log file in append mode; create if its new, or append to a new file.
+    # Use encoding='utf-8' for consistency
+    with open(log_file, "a", encoding="utf-8") as file:
+        # Read lines with stdin and covert them into formatted log entry
+        while True:
+            inputAction = sys.stdin.readline()   # blocking read from pipeline
+            if not inputAction :                  # Pipe closed, break out
+                break
+            inputAction  = inputAction.strip()           # remove any unnecessary space
+            if inputAction  == "QUIT":            # stop the sequence, make one special last line and break out
+                log_line("QUIT", "Logger exiting.", file)
+                break
+
+            # Try to split the input into an action and the remainder of the message.
+            # If there's no space, treat it like an info case
+            if " " in inputAction :
+                action, logged = inputAction.split(" ", 1)
+            else:
+                action, logged = "INFO", inputAction  #base case
+
+            # Write the new log entry to the file with the function
+            log_line(action, logged, file)
+
+# Run main when executed directly
+if __name__ == "__main__":
+    main()
