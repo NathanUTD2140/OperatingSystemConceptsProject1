@@ -35,3 +35,50 @@ def main():
         input = input.strip() #removes unnecessary space
         if not input:
             continue
+
+# parse the input from the user into the first half as the instruction and the other as a part
+        parts = input.split(" ", 1)   # split at the first space only, could be a cipher otherwise
+        instruction = parts[0].upper()          # uppercase for normalization
+        arg = parts[1].upper() if len(parts) > 1 else ""  # argument if present, uppercase
+
+        # QUIT: terminate the process, simple and clean
+        if instruction == "QUIT":
+            break
+
+        # PASS: set the key (only letters)
+        elif instruction == "PASS":
+            if not arg.isalpha():      # Make sure it's alphabet characters
+                print("ERROR Passkey must contain only letters.") #error message for user
+            else:
+                passkey = arg          # store the password
+                print("RESULT Passkey set.") #tell the user it has been set
+
+        # ENCRYPT: encrypt userString using stored password
+        elif instruction == "ENCRYPT":
+            if password is None:       # if there is no password, return error
+                print("ERROR Password not set.")
+            elif not userString.isalpha():   # validate text (letters only) (think it's valid for this project)
+                print("ERROR Input must contain only letters.")
+            else:
+                print(f"RESULT {vigenere_encrypt(userString, password)}")  # pass to function, output result
+          
+
+        # DECRYPT: decrypt userString using stored password
+        elif instruction == "DECRYPT":
+            if password is None:
+                print("ERROR Password not set.") # if there is no password, return error
+            elif not userString.isalpha():
+                print("ERROR Input must contain only letters.")  # validate text (letters only) (think it's valid for this project)
+            else:
+                print(f"RESULT {vigenere_decrypt(userString, password)}")  # pass to function, output result
+          
+
+        # Not valid string, return error
+        else:
+            print("ERROR Unknown command.")
+          
+
+# Entry point guard so module can be imported without running main()
+if __name__ == "__main__":
+    main()
+
