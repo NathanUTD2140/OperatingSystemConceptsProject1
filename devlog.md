@@ -36,6 +36,10 @@ I didn't encounter nearly as many difficulties as I thought I would. I believed 
 
 Today's session will involve programming driver, and seeing how the program works together in the command terminal. The plan is for the pipe to hear input from the command terminal, and then driver reacts to the input. If password is selected, it will give the information to logger and encrtyption as a password. Encrypt and decrypt will both be given to encryption, which will have a stored password in the file, and encrypt/decrypt based on the information given. If quit is selected, then it will write a unique entry to the log and terminate the program. Each case will be determined on user input, so it will look similar to encrypt, where it changes based on what the user wants to do. Once the user declares what they want to do, it will pass the revelant information to the logger and encryption file. There will be a log function that will give it the specified action and the user input for that action. It will also keep a history of words, in an array. This will help for easier decryption for the most part, as the computer will simply decrypt old messages the user wants. 
 
-### 9:23pm, Octover 19th, 2025
+### 9:23pm, October 19th, 2025
 
 When I start the program, after inputting what I want to select, the command line simply freezes. I find this odd, as multiple lines should output after the user receives input. I believe this is happening currently in the encryption file. I will also add an exception to make sure that weird inputs or other inputs to exit the command line can smoothly close. 
+
+### 9:48pm, October 19th, 2025
+
+It turns whenever it outputs something from the console, the program needs to clean out what is their basically. Thus, I haved added sys.stdout.flush(). after almost every line in the encrypt file, as I do not know if it needed it for every case. This was a weird error, as I knew it existed for stdin, but not stdout. This was an oversight on my part. I also added an exception and try statement, in case something like this happens, I can exit out of the program smoothly. It seems to run fine now, but I will test more. 
