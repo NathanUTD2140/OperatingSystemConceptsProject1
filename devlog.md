@@ -47,3 +47,7 @@ It turns whenever it outputs something from the console, the program needs to cl
 ### 9:53pm, October 19th, 2025
 
 When no password is set, it still asks for the history when using encrypt or decrypt. I can try and program around this, but I'm not too confident I can get this done in time. 
+
+### 10:21pm, October 19th, 2025 
+
+Added in a new variable and an if statement to see if the password has been enabled or not. This got around the problem with the encryption. Everything is working smoothly, I will write the final statement now. 
