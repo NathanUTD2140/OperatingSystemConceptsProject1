@@ -118,5 +118,29 @@ def main():
                     result = resp.split(" ", 1)[1]
                     history.append(text)
                     history.append(result)
+                # History if we want it
+            elif cmd == "history": #
+                if not history: # no history
+                    print("(empty)") # put as empty
+                else:
+                    for i, h in enumerate(history): # enumerate through history
+                        print(f"{i+1}. {h}")
+                log("COMMAND", "history") # command for history
+
+            # back up case if something goes wrong
+            else:
+                print("Unknown command.")
+                log("ERROR", f"Unknown command {cmd}")
+
+    # Exit if something goes wrong in the terminal
+    except KeyboardInterrupt:
+        print("\nExiting...")
+        encryption.stdin.write("QUIT\n"); encryption.stdin.flush()
+        logger.stdin.write("QUIT\n"); logger.stdin.flush()
+        encryption.wait()
+        logger.wait()
+
+if __name__ == "__main__":
+    main()
 
 
