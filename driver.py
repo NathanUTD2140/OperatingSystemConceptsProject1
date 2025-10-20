@@ -78,4 +78,45 @@ def main():
                 # Makes a log for this
                 log("COMMAND", "password")
                 log("RESULT", resp)
+                
+            # ENCRYPT/DECRYPT
+            elif cmd in ["encrypt", "decrypt"]: # if command is either of these, go here
+                mode = cmd.upper() # mode is encrypt or decrypt
+
+                # If history has something, we can use previous results
+                choice = input("Use history? (y/n): ").strip().lower() # case insensitive
+                if choice == "y" and history: # if the choice is yes and we have history, go into this loop
+                    for i, s in enumerate(history): # enumerate for indexes of history
+                        print(f"{i+1}. {s}") # s is the value currently in history
+                    idx = input("Select number or press Enter for new: ").strip()
+                    if idx.isdigit() and 1 <= int(idx) <= len(history): # check if it's an index in history, and is a number
+                        text = history[int(idx) - 1] # output the text there
+                    else:
+                        text = input("Enter new text: ").strip().upper() # input next text as
+                else:
+                    text = input("Enter new text: ").strip().upper() # base case
+
+                if not text.isalpha(): # only allow letters
+                    print("Error: only letters allowed.")
+                    log("ERROR", "Non-letter input.")
+                    continue
+
+                # Send command to encryption
+                encryption.stdin.write(f"{mode} {text}\n")
+                encryption.stdin.flush()
+
+                # Receive the output from encryption
+                resp = encryption.stdout.readline().strip()
+                print(resp)
+
+                # Log the result
+                log("COMMAND", f"{cmd} {text}")
+                log("RESULT", resp)
+
+                # Save to history (both input and result)
+                if resp.startswith("RESULT "):
+                    result = resp.split(" ", 1)[1]
+                    history.append(text)
+                    history.append(result)
+
 
