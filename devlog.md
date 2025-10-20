@@ -43,3 +43,7 @@ When I start the program, after inputting what I want to select, the command lin
 ### 9:48pm, October 19th, 2025
 
 It turns whenever it outputs something from the console, the program needs to clean out what is their basically. Thus, I haved added sys.stdout.flush(). after almost every line in the encrypt file, as I do not know if it needed it for every case. This was a weird error, as I knew it existed for stdin, but not stdout. This was an oversight on my part. I also added an exception and try statement, in case something like this happens, I can exit out of the program smoothly. It seems to run fine now, but I will test more. 
+
+### 9:53pm, October 19th, 2025
+
+When no password is set, it still asks for the history when using encrypt or decrypt. I can try and program around this, but I'm not too confident I can get this done in time. 
