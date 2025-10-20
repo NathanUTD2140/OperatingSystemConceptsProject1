@@ -25,12 +25,14 @@ def main():
 
     # Open encryption, so we can actually encrypt and decrypt
     encryption = Popen([python_exec, "encryption.py"],
-                      stdin=PIPE, stdout=PIPE, text=True, encoding="utf-8")
+                       stdin=PIPE, stdout=PIPE, text=True, encoding="utf-8")
     # includes stdout in the pipe, to output to user.
 
     # List to store session history of inputs/results
     history = [] # history is a blank array full of user inputs for encryption and decryption
-    
+
+    password_enabled = False   # Variable to see if password is set or not
+
     def log(action, msg):
         """Helper to send messages to the logger process."""
         logger.stdin.write(f"{action} {msg}\n") # write what happened in log file with the action and messaged associated.
@@ -78,9 +80,19 @@ def main():
                 # Makes a log for this
                 log("COMMAND", "password")
                 log("RESULT", resp)
-                
+
+                #The if state checks to make sure the result was correct
+                if resp.startswith("RESULT"):
+                    password_enabled = True #set it as true now
+
             # ENCRYPT/DECRYPT
             elif cmd in ["encrypt", "decrypt"]: # if command is either of these, go here
+
+                if not password_enabled: #if this is still false, ask the user for a password first
+                    print("Error: You must set a password first.")
+                    log("ERROR", "Attempted encryption/decryption without password.") #give log the error
+                    continue  # skip everything below
+
                 mode = cmd.upper() # mode is encrypt or decrypt
 
                 # If history has something, we can use previous results
@@ -142,5 +154,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
