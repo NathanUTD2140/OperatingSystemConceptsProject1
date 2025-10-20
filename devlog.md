@@ -51,3 +51,7 @@ When no password is set, it still asks for the history when using encrypt or dec
 ### 10:21pm, October 19th, 2025 
 
 Added in a new variable and an if statement to see if the password has been enabled or not. This got around the problem with the encryption. Everything is working smoothly, I will write the final statement now. 
+
+## 10:26pm, October 19th, 2025
+
+Today's session was pretty clean, it was mostly bug fixes. I did not account properly for the order of actions, and I also neglected to put .flush() for the encryption file at first. This caused errors that could have been avoided, as it was a simple fix and not much needed to actually be changed. Driver.py was easy to build off because of the previous files. A lot of the driver was built off of the previous encryption and logger files. I will make sure to clean out the stdout and stdin for every pipe process I do now. I will now write the readme. 
